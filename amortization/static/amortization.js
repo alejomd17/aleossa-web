@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded",() => {
             };
 
             try {
-                const response = await fetch('/amortization/', {
+                const response = await fetch("https://aleossa-api.onrender.com/amortization/", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)

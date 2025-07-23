@@ -34,7 +34,7 @@ export default function HomePage() {
       >
         <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
+            {/* <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
               <Image
                 src="/profile.png"
                 alt="Profile"
@@ -42,7 +42,7 @@ export default function HomePage() {
                 height={32}
                 className="object-cover"
               />
-            </div>
+            </div> */}
             <h1 className="text-lg font-medium text-white">Alejandro Moscoso Deossa</h1>
           </div>
           

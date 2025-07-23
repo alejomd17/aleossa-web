@@ -43,7 +43,11 @@ export default function HomePage() {
                 className="object-cover"
               />
             </div> */}
-            <h1 className="text-lg font-medium text-white">Alejandro Moscoso Deossa</h1>
+            <Link href="/">
+              <h1 className="text-lg font-medium text-white">
+                Alejandro Moscoso Deossa
+              </h1>
+            </Link>
           </div>
           
           <div className="flex items-center space-x-6">
@@ -71,18 +75,56 @@ export default function HomePage() {
 
             <div className="flex items-center space-x-4">
               <Link 
+                href="/" 
+                className="text-white hover:text-slate-300 font-medium"
+              >
+                {english ? "Home" : "Inicio"}
+              </Link>
+              <Link 
                 href="/about" 
                 className="text-white hover:text-slate-300 font-medium"
               >
                 {english ? "About" : "Acerca de mí"}
               </Link>
-              <Link 
+              {/* <Link 
                 href="/projects" 
                 className="text-white hover:text-slate-300 font-medium"
               >
                 {english ? "Projects" : "Proyectos"}
-              </Link>
-              
+              </Link> */}
+              <div className="relative group">
+                <span className="text-white hover:text-slate-300 font-medium cursor-pointer">
+                  {english ? "Projects" : "Proyectos"}
+                </span>
+
+                {/* Submenú visible al hacer hover en el grupo */}
+                <div className="absolute hidden group-hover:block bg-slate-800 text-white mt-2 rounded shadow-lg z-50 min-w-[200px]">
+                  <ul className="py-2 px-4 space-y-2 text-sm">
+                    <li>
+                      <a 
+                        href="/amortization" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block hover:text-slate-300"
+                      >
+                        {english ? "Amortization Calculator" : "Amortización de Crédito"}
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="/properties" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block hover:text-slate-300"
+                      >
+                        {english ? "Properties Analyzer" : "Analizador de Propiedades"}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+
               <button 
                 onClick={() => setEnglish(!english)}
                 className="p-1.5 text-white hover:bg-slate-700 rounded-full"

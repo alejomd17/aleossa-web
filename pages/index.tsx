@@ -92,18 +92,18 @@ export default function HomePage() {
               >
                 {english ? "Projects" : "Proyectos"}
               </Link> */}
-              <div className="relative group">
-                <span className="text-white hover:text-slate-300 font-medium cursor-pointer">
+              <div className="relative group inline-block">
+                <div className="cursor-pointer text-white font-medium px-4 py-2">
                   {english ? "Projects" : "Proyectos"}
-                </span>
+                </div>
 
-                {/* Submenú visible al hacer hover en el grupo */}
-                <div className="absolute hidden group-hover:block bg-slate-800 text-white mt-2 rounded shadow-lg z-50 min-w-[200px]">
+                {/* El contenedor se muestra cuando se hace hover en el padre */}
+                <div className="absolute left-0 mt-1 w-56 bg-slate-800 text-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition duration-300 z-50">
                   <ul className="py-2 px-4 space-y-2 text-sm">
                     <li>
-                      <a 
-                        href="/amortization" 
-                        target="_blank" 
+                      <a
+                        href="/amortization"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="block hover:text-slate-300"
                       >
@@ -111,18 +111,19 @@ export default function HomePage() {
                       </a>
                     </li>
                     <li>
-                      <a 
-                        href="/properties" 
-                        target="_blank" 
+                      <a
+                        href="/propiedades"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="block hover:text-slate-300"
                       >
-                        {english ? "Properties Analyzer" : "Analizador de Propiedades"}
+                        {english ? "m² Real Estate Portfolio" : "m² Portafolio Inmobiliario"}
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
+
 
 
               <button 

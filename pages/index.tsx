@@ -160,19 +160,19 @@ export default function HomePage() {
                 {english ? (
                   <>
                     <p>
-                      <strong>Data Scientist</strong> specializing in <strong>Machine Learning</strong>, <strong>AI solutions</strong>, and <strong>data-driven decision making</strong>. I transform complex datasets into actionable insights through advanced analytics, predictive modeling, and innovative data visualization techniques.
+                      <strong>Full-stack data professional</strong> skilled across the entire <strong>AI/ML lifecycle</strong> — from exploratory analysis and model development to data engineering orchestration, scalable cloud architecture, and building data platforms that serve advanced analytics and AI.
                     </p>
                     <p>
-                      With expertise spanning <strong>data engineering</strong>, <strong>generative AI</strong>, and <strong>statistical analysis</strong>, I architect intelligent systems that bridge business challenges with technical solutions. Passionate about building scalable models that drive innovation and measurable business impact.
+                      Combines <strong>6+ years of experience</strong> spanning financial risk, econometrics, NLP, forecasting, and cloud-native solutions, with deep expertise in <strong>Python</strong>, <strong>SQL</strong>, <strong>PySpark</strong>, and the <strong>Azure ecosystem</strong> (Databricks, Data Factory, Azure ML). Solid academic foundation including a <strong>Master's in Economics and Financial Engineering</strong>. Currently expanding into <strong>Generative AI</strong> and agentic workflows: RAGs, LangChain, and Prompt Engineering.
                     </p>
                   </>
                 ) : (
                   <>
                     <p>
-                      <strong>Científico de Datos</strong> especializado en <strong>Machine Learning</strong>, <strong>soluciones de IA</strong> y <strong>toma de decisiones basada en datos</strong>. Transformo conjuntos de datos complejos en información accionable mediante análisis avanzados, modelos predictivos y técnicas innovadoras de visualización.
+                      <strong>Profesional de datos full-stack</strong> con dominio de todo el ciclo de vida de <strong>IA/ML</strong> — desde el análisis exploratorio y desarrollo de modelos hasta la orquestación de ingeniería de datos, arquitectura cloud escalable y construcción de plataformas de datos para analítica avanzada e IA.
                     </p>
                     <p>
-                      Con experiencia en <strong>ingeniería de datos</strong>, <strong>IA generativa</strong> y <strong>análisis estadístico</strong>, diseño sistemas inteligentes que conectan desafíos empresariales con soluciones técnicas. Apasionado por construir modelos escalables que impulsen innovación e impacto empresarial medible.
+                      Más de <strong>6 años de experiencia</strong> en riesgo financiero, econometría, NLP, pronósticos y soluciones cloud-native, con profunda expertise en <strong>Python</strong>, <strong>SQL</strong>, <strong>PySpark</strong> y el ecosistema <strong>Azure</strong> (Databricks, Data Factory, Azure ML). Sólida formación académica con <strong>Maestría en Economía e Ingeniería Financiera</strong>. Actualmente ampliando hacia <strong>IA Generativa</strong> y flujos agénticos: RAGs, LangChain y Prompt Engineering.
                     </p>
                   </>
                 )}

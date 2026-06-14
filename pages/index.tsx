@@ -114,16 +114,6 @@ export default function HomePage() {
                     </li>
                     <li>
                       <a
-                        href="/propiedades"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block hover:text-slate-300"
-                      >
-                        {english ? "m² Real Estate Portfolio" : "m² Portafolio Inmobiliario"}
-                      </a>
-                    </li>
-                    <li>
-                      <a
                         href="https://aleossa.com/dynamic_pricing"
                         target="_blank"
                         rel="noopener noreferrer"

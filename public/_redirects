@@ -2,4 +2,6 @@
 /minesight https://minesightdd.onrender.com 302
 /minesight/* https://minesightdd.onrender.com/:splat 302
 /dynamic_pricing/* https://pricing-aleossa.onrender.com/:splat 302
+/propiedades https://agoria.properties 302
+/propiedades/* https://agoria.properties/:splat 302
 /* /index.html 200

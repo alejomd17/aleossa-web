@@ -163,7 +163,7 @@ export default function HomePage() {
                       <strong>Full-stack data professional</strong> skilled across the entire <strong>AI/ML lifecycle</strong> — from exploratory analysis and model development to data engineering orchestration, scalable cloud architecture, and building data platforms that serve advanced analytics and AI.
                     </p>
                     <p>
-                      Combines <strong>6+ years of experience</strong> spanning financial risk, econometrics, NLP, forecasting, and cloud-native solutions, with deep expertise in <strong>Python</strong>, <strong>SQL</strong>, <strong>PySpark</strong>, and the <strong>Azure ecosystem</strong> (Databricks, Data Factory, Azure ML). Solid academic foundation including a <strong>Master's in Economics and Financial Engineering</strong>. Currently expanding into <strong>Generative AI</strong> and agentic workflows: RAGs, LangChain, and Prompt Engineering.
+                      Combines <strong>6+ years of experience</strong> spanning financial risk, econometrics, NLP, forecasting, and cloud-native solutions, with deep expertise in <strong>Python</strong>, <strong>SQL</strong>, <strong>PySpark</strong>, and the <strong>Azure ecosystem</strong> (Databricks, Data Factory, Azure ML). Solid academic foundation including a <strong>Master&apos;s in Economics and Financial Engineering</strong>. Currently expanding into <strong>Generative AI</strong> and agentic workflows: RAGs, LangChain, and Prompt Engineering.
                     </p>
                   </>
                 ) : (

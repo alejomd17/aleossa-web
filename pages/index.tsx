@@ -80,12 +80,14 @@ export default function HomePage() {
               >
                 {english ? "Home" : "Inicio"}
               </Link>
-              <Link 
-                href="/about" 
+              {/* Hidden: About link
+              <Link
+                href="/about"
                 className="text-white hover:text-slate-300 font-medium"
               >
                 {english ? "About" : "Acerca de mí"}
               </Link>
+              */}
               {/* <Link 
                 href="/projects" 
                 className="text-white hover:text-slate-300 font-medium"
@@ -98,7 +100,7 @@ export default function HomePage() {
                 </div>
 
                 {/* El contenedor se muestra cuando se hace hover en el padre */}
-                <div className="absolute left-0 mt-1 w-56 bg-slate-800 text-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition duration-300 z-50">
+                <div className="absolute left-0 mt-1 w-72 bg-slate-800 text-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition duration-300 z-50">
                   <ul className="py-2 px-4 space-y-2 text-sm">
                     <li>
                       <a
@@ -118,6 +120,36 @@ export default function HomePage() {
                         className="block hover:text-slate-300"
                       >
                         {english ? "m² Real Estate Portfolio" : "m² Portafolio Inmobiliario"}
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://aleossa.com/dynamic_pricing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block hover:text-slate-300"
+                      >
+                        {english ? "Dynamic Pricing" : "Dynamic Pricing"}
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://aleossa.com/minesight"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block hover:text-slate-300"
+                      >
+                        {english ? "Financial Reports → KPI Agent" : "Informes Financieros → KPI (Agente)"}
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="https://agoria.properties"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block hover:text-slate-300"
+                      >
+                        {english ? "Agoria: PropTech" : "Agoria: Inmobiliaria Tech"}
                       </a>
                     </li>
                   </ul>
@@ -156,7 +188,7 @@ export default function HomePage() {
             
             {/* Texto de presentación */}
             <div className="flex-1">
-              <div className="prose text-slate-700 space-y-4 mb-6">
+              <div className="prose text-slate-700 space-y-4 mb-6 text-justify">
                 {english ? (
                   <>
                     <p>
@@ -180,15 +212,17 @@ export default function HomePage() {
               
               {/* Botones */}
               <div className="flex flex-wrap gap-3 mb-8">
-                <Link 
-                  href="/about" 
+                {/* Hidden: About Me button
+                <Link
+                  href="/about"
                   className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
                 >
                   <User size={16} />
                   {english ? "About Me" : "Acerca de mí"}
                 </Link>
-                
-                <button 
+                */}
+
+                <button
                   onClick={handleDownloadCV}
                   className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
                 >

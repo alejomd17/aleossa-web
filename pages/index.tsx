@@ -287,11 +287,11 @@ export default function HomePage() {
                 style={p.estado === "live" ? { borderLeftColor: "#3CA6C0" } : {}}
               >
                 {p.preview ? (
-                  <div className="h-20 relative">
-                    <Image src={p.preview} alt={p.titulo[lang]} fill className="object-cover" />
+                  <div className="h-40 relative">
+                    <Image src={p.preview} alt={p.titulo[lang]} fill className="object-cover object-top" />
                   </div>
                 ) : (
-                  <div className="h-20 flex flex-col items-center justify-center gap-1 bg-slate-100">
+                  <div className="h-40 flex flex-col items-center justify-center gap-1 bg-slate-100">
                     <Camera size={18} className="text-slate-400" />
                     <span className="text-xs text-slate-400">preview asignable</span>
                   </div>

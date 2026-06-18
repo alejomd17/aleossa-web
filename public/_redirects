@@ -1,5 +1,6 @@
 /amortization https://aleossa-api.onrender.com/ 200
 /amortization/* https://aleossa-api.onrender.com/:splat 200
+/static/* https://aleossa-api.onrender.com/static/:splat 200
 /minesight https://minesightdd.onrender.com/ 200
 /minesight/* https://minesightdd.onrender.com/:splat 200
 /dynamic_pricing https://pricing-aleossa.onrender.com/dynamic_pricing/ 200

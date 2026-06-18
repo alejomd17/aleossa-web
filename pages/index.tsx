@@ -1,157 +1,122 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
-import { Linkedin, Github, Mail, Phone, MapPin, FileText, User } from "lucide-react";
 import Image from "next/image";
+import {
+  Linkedin,
+  Github,
+  Menu,
+  X,
+  FileText,
+  MessageCircle,
+  Camera,
+  MapPin,
+  Home,
+  Layers,
+  Download,
+} from "lucide-react";
+
+import { config, badgeColors } from "../lib/config";
 
 export default function HomePage() {
   const [english, setEnglish] = useState(false);
-  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
-  // Paleta azul petróleo
-  const petrolColors = {
-    dark: '#123546',
-    accent: '#3CA6C0',
-    light: '#E1F0F5'
-  };
+  const lang: "es" | "en" = english ? "en" : "es";
 
-  const handleDownloadCV = () => {
-    const filename = english ? "CV_AMD.pdf" : "HdV_AMD.pdf";
+  const handleDownloadCV = (href: string) => {
+    const filename = href.split("/").pop() || "download.pdf";
     const link = document.createElement("a");
-    link.href = `/pdfs/${filename}`;
+    link.href = href;
     link.download = filename;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
+  const scrollToId = (id: string) => {
+    setMenuOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
+
+
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Navbar Superior con redes sociales */}
-      <nav 
-        className="border-b sticky top-0 z-10 shadow-sm"
-        style={{ backgroundColor: petrolColors.dark }}
+
+      {/* ── NAVBAR ── */}
+      <nav
+        className="sticky top-0 z-10 border-b border-[#1d4d63]"
+        style={{ backgroundColor: "#0a2433" }}
       >
-        <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-3">
-            {/* <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
-              <Image
-                src="/profile.png"
-                alt="Profile"
-                width={32}
-                height={32}
-                className="object-cover"
-              />
-            </div> */}
-            <Link href="/">
-              <h1 className="text-lg font-medium text-white">
-                Alejandro Moscoso Deossa
-              </h1>
-            </Link>
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+          <a href="/" className="text-lg font-bold tracking-tight">
+            <span className="text-white">ALE</span>
+            <span style={{ color: "#3CA6C0" }}>OSSA</span>
+          </a>
+
+          {/* Mobile: lang toggle + hamburger */}
+          <div className="flex items-center gap-3 md:hidden">
+            <button
+              onClick={() => setEnglish(!english)}
+              className="text-xs font-bold text-white px-2 py-1 rounded border border-[#3CA6C0]"
+              aria-label={english ? "Cambiar a español" : "Switch to English"}
+            >
+              {english ? "ES" : "EN"}
+            </button>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-white"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
-          
-          <div className="flex items-center space-x-6">
-            {/* Redes sociales en el navbar */}
-            <div className="flex space-x-4">
-              <a 
-                href="https://linkedin.com/in/alejomd17" 
-                target="_blank" 
+
+          {/* Desktop: links + icons + lang toggle */}
+          <div className="hidden md:flex items-center gap-6">
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="text-white hover:opacity-80 text-sm font-medium"
+            >
+              {english ? "Home" : "Inicio"}
+            </a>
+            <a
+              href="#proyectos"
+              onClick={(e) => { e.preventDefault(); scrollToId("proyectos"); }}
+              className="text-white hover:opacity-80 text-sm font-medium"
+            >
+              {english ? "Projects" : "Proyectos"}
+            </a>
+            <a
+              href="#contacto"
+              onClick={(e) => { e.preventDefault(); scrollToId("contacto"); }}
+              className="text-white hover:opacity-80 text-sm font-medium"
+            >
+              {english ? "Contact" : "Contacto"}
+            </a>
+            <div className="flex items-center gap-3 ml-2 pl-4 border-l border-[#1d4d63]">
+              <a
+                href={config.contacto.linkedin}
+                target="_blank"
                 rel="noopener noreferrer"
+                style={{ color: "#3CA6C0" }}
                 className="hover:opacity-80 transition-opacity"
-                style={{ color: petrolColors.accent }}
               >
-                <Linkedin size={20} />
+                <Linkedin size={18} />
               </a>
-              <a 
-                href="https://github.com/alejomd17" 
-                target="_blank" 
+              <a
+                href={config.contacto.github}
+                target="_blank"
                 rel="noopener noreferrer"
+                style={{ color: "#3CA6C0" }}
                 className="hover:opacity-80 transition-opacity"
-                style={{ color: petrolColors.accent }}
               >
-                <Github size={20} />
+                <Github size={18} />
               </a>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <Link 
-                href="/" 
-                className="text-white hover:text-slate-300 font-medium"
-              >
-                {english ? "Home" : "Inicio"}
-              </Link>
-              {/* Hidden: About link
-              <Link
-                href="/about"
-                className="text-white hover:text-slate-300 font-medium"
-              >
-                {english ? "About" : "Acerca de mí"}
-              </Link>
-              */}
-              {/* <Link 
-                href="/projects" 
-                className="text-white hover:text-slate-300 font-medium"
-              >
-                {english ? "Projects" : "Proyectos"}
-              </Link> */}
-              <div className="relative group inline-block">
-                <div className="cursor-pointer text-white font-medium px-4 py-2">
-                  {english ? "Projects" : "Proyectos"}
-                </div>
-
-                {/* El contenedor se muestra cuando se hace hover en el padre */}
-                <div className="absolute left-0 mt-1 w-72 bg-slate-800 text-white rounded shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition duration-300 z-50">
-                  <ul className="py-2 px-4 space-y-2 text-sm">
-                    <li>
-                      <a
-                        href="/amortization"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block hover:text-slate-300"
-                      >
-                        {english ? "Amortization Calculator" : "Amortización de Crédito"}
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://aleossa.com/dynamic_pricing"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block hover:text-slate-300"
-                      >
-                        {english ? "Dynamic Pricing" : "Dynamic Pricing"}
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://aleossa.com/minesight"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block hover:text-slate-300"
-                      >
-                        {english ? "Financial Reports → KPI Agent" : "Informes Financieros → KPI (Agente)"}
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://agoria.properties"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block hover:text-slate-300"
-                      >
-                        {english ? "Agoria: PropTech" : "Agoria: Inmobiliaria Tech"}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-
-
-              <button 
+              <button
                 onClick={() => setEnglish(!english)}
-                className="p-1.5 text-white hover:bg-slate-700 rounded-full"
-                aria-label={english ? "Switch to Spanish" : "Cambiar a español"}
+                className="text-xs font-bold text-white px-2 py-1 rounded border border-[#3CA6C0]"
+                aria-label={english ? "Cambiar a español" : "Switch to English"}
               >
                 {english ? "ES" : "EN"}
               </button>
@@ -160,118 +125,321 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Primera sección (fondo claro) */}
-      <div className="bg-slate-50 flex-grow">
-        <main className="container mx-auto px-4 py-12 max-w-4xl">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            {/* Foto de perfil */}
-            <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-slate-200 shadow-md">
-              <Image
-                src="/profile.png"
-                alt={english ? "Profile photo" : "Foto de perfil"}
-                width={192}
-                height={192}
-                className="object-cover w-full h-full"
-                priority
-              />
-            </div>
-            
-            {/* Texto de presentación */}
-            <div className="flex-1">
-              <div className="prose text-slate-700 space-y-4 mb-6 text-justify">
-                {english ? (
-                  <>
-                    <p>
-                      <strong>Full-stack data professional</strong> skilled across the entire <strong>AI/ML lifecycle</strong> — from exploratory analysis and model development to data engineering orchestration, scalable cloud architecture, and building data platforms that serve advanced analytics and AI.
-                    </p>
-                    <p>
-                      Combines <strong>6+ years of experience</strong> spanning financial risk, econometrics, NLP, forecasting, and cloud-native solutions, with deep expertise in <strong>Python</strong>, <strong>SQL</strong>, <strong>PySpark</strong>, and the <strong>Azure ecosystem</strong> (Databricks, Data Factory, Azure ML). Solid academic foundation including a <strong>Master&apos;s in Economics and Financial Engineering</strong>. Currently expanding into <strong>Generative AI</strong> and agentic workflows: RAGs, LangChain, and Prompt Engineering.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      <strong>Profesional de datos full-stack</strong> con dominio de todo el ciclo de vida de <strong>IA/ML</strong> — desde el análisis exploratorio y desarrollo de modelos hasta la orquestación de ingeniería de datos, arquitectura cloud escalable y construcción de plataformas de datos para analítica avanzada e IA.
-                    </p>
-                    <p>
-                      Más de <strong>6 años de experiencia</strong> en riesgo financiero, econometría, NLP, pronósticos y soluciones cloud-native, con profunda expertise en <strong>Python</strong>, <strong>SQL</strong>, <strong>PySpark</strong> y el ecosistema <strong>Azure</strong> (Databricks, Data Factory, Azure ML). Sólida formación académica con <strong>Maestría en Economía e Ingeniería Financiera</strong>. Actualmente ampliando hacia <strong>IA Generativa</strong> y flujos agénticos: RAGs, LangChain y Prompt Engineering.
-                    </p>
-                  </>
-                )}
-              </div>
-              
-              {/* Botones */}
-              <div className="flex flex-wrap gap-3 mb-8">
-                {/* Hidden: About Me button
-                <Link
-                  href="/about"
-                  className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
-                >
-                  <User size={16} />
-                  {english ? "About Me" : "Acerca de mí"}
-                </Link>
-                */}
+      {/* ── MOBILE MENU ── */}
+      {menuOpen && (
+        <div
+          className="md:hidden border-b border-[#1d4d63]"
+          style={{ backgroundColor: "#0a2433" }}
+        >
+          <div className="px-4 flex flex-col">
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]"
+            >
+              <Home size={16} style={{ color: "#3CA6C0" }} />
+              {english ? "Home" : "Inicio"}
+            </a>
+            <a
+              href="#proyectos"
+              onClick={(e) => { e.preventDefault(); scrollToId("proyectos"); }}
+              className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]"
+            >
+              <Layers size={16} style={{ color: "#3CA6C0" }} />
+              {english ? "Projects" : "Proyectos"}
+            </a>
+            <a
+              href="#contacto"
+              onClick={(e) => { e.preventDefault(); scrollToId("contacto"); }}
+              className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]"
+            >
+              <MessageCircle size={16} style={{ color: "#3CA6C0" }} />
+              {english ? "Contact" : "Contacto"}
+            </a>
+            <a
+              href={config.contacto.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]"
+            >
+              <Linkedin size={16} style={{ color: "#3CA6C0" }} />
+              LinkedIn
+            </a>
+            <a
+              href={config.contacto.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]"
+            >
+              <Github size={16} style={{ color: "#3CA6C0" }} />
+              GitHub
+            </a>
+            <button
+              onClick={() => { handleDownloadCV(config.contacto.hdv_es); setMenuOpen(false); }}
+              className="flex items-center gap-3 py-3 text-white text-sm w-full"
+            >
+              <Download size={16} style={{ color: "#3CA6C0" }} />
+              {english ? "Download CV" : "Descargar HdV"}
+            </button>
+          </div>
+        </div>
+      )}
 
-                <button
-                  onClick={handleDownloadCV}
-                  className="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
-                >
-                  <FileText size={16} />
-                  {english ? "Download CV" : "Descargar HdV"}
-                </button>
+      {/* ── HERO ── */}
+      <section className="py-10 px-4" style={{ backgroundColor: "#0f2e3d" }}>
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-6 md:gap-10">
+
+          {/* Photo */}
+          <div className="flex-shrink-0">
+            {imgError ? (
+              <div
+                className="w-16 h-16 md:w-40 md:h-40 rounded-full flex items-center justify-center text-white font-bold text-lg border-2"
+                style={{ borderColor: "#3CA6C0", backgroundColor: "#123546" }}
+              >
+                AM
               </div>
+            ) : (
+              <div
+                className="w-16 h-16 md:w-40 md:h-40 rounded-full overflow-hidden border-2"
+                style={{ borderColor: "#3CA6C0" }}
+              >
+                <Image
+                  src="/profile.png"
+                  alt="Alejandro Moscoso Deossa"
+                  width={160}
+                  height={160}
+                  className="object-cover w-full h-full"
+                  priority
+                  onError={() => setImgError(true)}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Text */}
+          <div className="flex flex-col items-center text-center md:items-start md:text-left flex-1">
+            <span
+              className="text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider"
+              style={{ backgroundColor: "#1d4d63", color: "#3CA6C0" }}
+            >
+              {config.cargo}
+            </span>
+            <h1 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              Alejandro Moscoso Deossa
+            </h1>
+            <p className="text-sm text-slate-300 mb-5 text-justify">
+              {config.bio[lang]}
+            </p>
+            <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+              <a
+                href="#proyectos"
+                onClick={(e) => { e.preventDefault(); scrollToId("proyectos"); }}
+                className="w-full md:w-auto text-center px-5 py-2.5 rounded-lg font-semibold text-white text-sm hover:opacity-90 transition-opacity"
+                style={{ backgroundColor: "#3CA6C0" }}
+              >
+                {english ? "View Projects" : "Ver proyectos"}
+              </a>
+              <button
+                onClick={() => handleDownloadCV(english ? config.contacto.cv_en : config.contacto.hdv_es)}
+                className="w-full md:w-auto px-5 py-2.5 rounded-lg font-semibold text-sm border hover:opacity-90 transition-opacity"
+                style={{ borderColor: "#3CA6C0", color: "#3CA6C0" }}
+              >
+                {english ? "Download CV" : "Descargar HdV"}
+              </button>
             </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </section>
 
-      {/* Segunda sección (fondo oscuro) */}
-      <div 
-        className="py-12"
-        style={{ backgroundColor: petrolColors.dark }}
-      >
-        <div className="max-w-4xl mx-auto px-4">
-          <h3 className="text-xl font-medium text-white mb-6">
+      {/* ── STACK STRIP ── */}
+      <section className="py-5 px-4" style={{ backgroundColor: "#0a2433" }}>
+        <div className="max-w-5xl mx-auto flex flex-wrap items-center gap-2">
+          <span className="text-xs uppercase tracking-widest font-semibold mr-2" style={{ color: "#3CA6C0" }}>
+            Stack
+          </span>
+          {config.stack.map((sk) => (
+            <span
+              key={sk.label}
+              className={`text-xs px-2 py-1 rounded font-medium ${badgeColors[sk.color]}`}
+            >
+                {sk.label}
+              </span>
+            ))}
+        </div>
+      </section>
+
+      {/* ── PROYECTOS ── */}
+      <section id="proyectos" className="py-10 px-4" style={{ backgroundColor: "#f0f4f5" }}>
+        <div className="max-w-5xl mx-auto">
+          <p className="text-xs uppercase tracking-widest font-semibold mb-6 text-slate-500">
+            {english ? "Projects" : "Proyectos"}
+          </p>
+          <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-4">
+            {config.proyectos.filter((p) => p.destacado).map((p) => (
+              <div
+                key={p.id}
+                className={`bg-white rounded-lg overflow-hidden shadow-sm flex flex-col${
+                  p.estado === "live" ? " border-l-2" : ""
+                }`}
+                style={p.estado === "live" ? { borderLeftColor: "#3CA6C0" } : {}}
+              >
+                {p.preview ? (
+                  <div className="h-20 relative">
+                    <Image src={p.preview} alt={p.titulo[lang]} fill className="object-cover" />
+                  </div>
+                ) : (
+                  <div className="h-20 flex flex-col items-center justify-center gap-1 bg-slate-100">
+                    <Camera size={18} className="text-slate-400" />
+                    <span className="text-xs text-slate-400">preview asignable</span>
+                  </div>
+                )}
+                <div className="p-4 flex flex-col flex-1">
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">{p.titulo[lang]}</h3>
+                  <p className="text-xs text-slate-600 mb-3 flex-1">{p.desc[lang]}</p>
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {p.stack.map((s) => (
+                      <span key={s} className="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                  {(p.demo || p.repo) && (
+                    <div className="flex gap-2">
+                      {p.demo && (
+                        <a
+                          href={p.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold px-3 py-1.5 rounded text-white hover:opacity-90 transition-opacity"
+                          style={{ backgroundColor: "#3CA6C0" }}
+                        >
+                          Demo
+                        </a>
+                      )}
+                      {p.repo && (
+                        <a
+                          href={p.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold px-3 py-1.5 rounded border border-slate-300 text-slate-600 hover:opacity-80 transition-opacity"
+                        >
+                          Repo
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <a
+              href="/projects"
+              className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-lg border hover:opacity-90 transition-opacity"
+              style={{ borderColor: "#3CA6C0", color: "#3CA6C0" }}
+            >
+              {english ? "View all projects →" : "Ver todos los proyectos →"}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer id="contacto" className="py-10 px-4" style={{ backgroundColor: "#0f2e3d" }}>
+        <div className="max-w-5xl mx-auto">
+
+          <h3 className="text-xl font-medium text-white mb-3">
             {english ? "Let's Connect" : "Conectemos"}
           </h3>
-          
-          <p className="text-slate-300 mb-8">
-            {english ? 
-              "Ready to discuss data science opportunities or collaborate on exciting projects?" : 
-              "¿Listo para hablar sobre oportunidades en ciencia de datos o colaborar en proyectos interesantes?"}
-          </p>
-          
-          {/* Información de contacto */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="flex items-center gap-3 text-white">
-              <Mail size={20} style={{ color: petrolColors.accent }} />
-              <a href="mailto:alejo-mdm@hotmail.com" className="hover:underline">alejo-mdm@hotmail.com</a>
-            </div>
-            
-            <div className="flex items-center gap-3 text-white">
-              <Phone size={20} style={{ color: petrolColors.accent }} />
-              <a href="https://wa.me/573122396942" target="_blank" rel="noopener" className="hover:underline">
-                +57 312 2396942
-              </a>
-            </div>
-            
-            <div className="flex items-center gap-3 text-white">
-              <MapPin size={20} style={{ color: petrolColors.accent }} />
-              <span>Medellín, Colombia</span>
+
+          {/* Mobile: 2×2 grid */}
+          <div className="grid grid-cols-2 gap-3 md:hidden">
+            <a
+              href={config.contacto.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-medium text-white bg-[#1a3a1a] hover:opacity-90 transition-opacity"
+            >
+              <MessageCircle size={16} />
+              WhatsApp
+            </a>
+            <a
+              href={config.contacto.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-medium text-white bg-[#0a1e38] hover:opacity-90 transition-opacity"
+            >
+              <Linkedin size={16} />
+              LinkedIn
+            </a>
+            <button
+              onClick={() => handleDownloadCV(config.contacto.hdv_es)}
+              className="flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-medium text-white bg-[#1e1038] hover:opacity-90 transition-opacity"
+            >
+              <FileText size={16} />
+              HdV Español
+            </button>
+            <button
+              onClick={() => handleDownloadCV(config.contacto.cv_en)}
+              className="flex items-center justify-center gap-2 px-3 py-3 rounded-lg text-sm font-medium text-white bg-[#2a1a08] hover:opacity-90 transition-opacity"
+            >
+              <FileText size={16} />
+              CV English
+            </button>
+          </div>
+
+          {/* Desktop: single row + location */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href={config.contacto.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-white bg-[#1a3a1a] hover:opacity-90 transition-opacity"
+            >
+              <MessageCircle size={16} />
+              WhatsApp
+            </a>
+            <a
+              href={config.contacto.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-white bg-[#0a1e38] hover:opacity-90 transition-opacity"
+            >
+              <Linkedin size={16} />
+              LinkedIn
+            </a>
+            <button
+              onClick={() => handleDownloadCV(config.contacto.hdv_es)}
+              className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-white bg-[#1e1038] hover:opacity-90 transition-opacity"
+            >
+              <FileText size={16} />
+              HdV Español
+            </button>
+            <button
+              onClick={() => handleDownloadCV(config.contacto.cv_en)}
+              className="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium text-white bg-[#2a1a08] hover:opacity-90 transition-opacity"
+            >
+              <FileText size={16} />
+              CV English
+            </button>
+            <div className="ml-auto flex items-center gap-2 text-slate-400 text-xs">
+              <MapPin size={14} />
+              Medellín, Colombia
             </div>
           </div>
         </div>
+      </footer>
+
+      {/* ── MINI FOOTER ── */}
+      <div
+        className="py-3 text-center text-xs text-slate-400"
+        style={{ backgroundColor: "#0a2433" }}
+      >
+        © 2026 Alejandro Moscoso Deossa
       </div>
 
-      {/* Footer simple */}
-      <footer 
-        className="py-4"
-        style={{ backgroundColor: petrolColors.dark }}
-      >
-        <div className="container mx-auto px-4 text-center text-slate-300 text-sm">
-          © {new Date().getFullYear()} Alejandro Moscoso Deossa
-        </div>
-      </footer>
     </div>
   );
 }

@@ -58,9 +58,9 @@ export default function ProjectsPage() {
             <Link href="/projects" className="text-sm font-medium" style={{ color: "#3CA6C0" }}>
               {english ? "Projects" : "Proyectos"}
             </Link>
-            <a href="/#contacto" className="text-white hover:opacity-80 text-sm font-medium">
+            <Link href="/#contacto" className="text-white hover:opacity-80 text-sm font-medium">
               {english ? "Contact" : "Contacto"}
-            </a>
+            </Link>
             <div className="flex items-center gap-3 ml-2 pl-4 border-l border-[#1d4d63]">
               <a href={config.contacto.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: "#3CA6C0" }} className="hover:opacity-80 transition-opacity">
                 <Linkedin size={18} />
@@ -88,10 +88,10 @@ export default function ProjectsPage() {
               <Layers size={16} style={{ color: "#3CA6C0" }} />
               {english ? "Projects" : "Proyectos"}
             </Link>
-            <a href="/#contacto" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]">
+            <Link href="/#contacto" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]">
               <MessageCircle size={16} style={{ color: "#3CA6C0" }} />
               {english ? "Contact" : "Contacto"}
-            </a>
+            </Link>
             <a href={config.contacto.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]">
               <Linkedin size={16} style={{ color: "#3CA6C0" }} />
               LinkedIn

@@ -5,13 +5,16 @@ export const config = {
     en: "Full-stack data professional skilled across the entire AI/ML lifecycle — from exploratory analysis and model development to data engineering orchestration, scalable cloud architecture, and building data platforms that serve advanced analytics and AI. Combines 6+ years of experience spanning financial risk, econometrics, NLP, forecasting, and cloud-native solutions, with deep expertise in Python, SQL, PySpark, and the Azure ecosystem (Databricks, Data Factory, Azure ML). Solid academic foundation including a Master's in Economics and Financial Engineering. Currently expanding into Generative AI and Agentic workflows: RAGs, LangChain, and Prompt Engineering.",
   },
   stack: [
-    { label: "Python",     color: "py"  },
-    { label: "SQL",        color: "sql" },
-    { label: "Azure",      color: "az"  },
-    { label: "FastAPI",    color: "py"  },
-    { label: "Databricks", color: "db"  },
-    { label: "GenAI",      color: "ai"  },
-    { label: "PySpark",    color: "def" },
+    { label: "Python",      color: "py"  },
+    { label: "SQL",         color: "sql" },
+    { label: "Azure",       color: "az"  },
+    { label: "FastAPI",     color: "py"  },
+    { label: "Databricks",  color: "db"  },
+    { label: "GenAI",       color: "ai"  },
+    { label: "PySpark",     color: "def" },
+    { label: "Power BI",    color: "sql" },
+    { label: "Scikit-learn",color: "py"  },
+    { label: "LangChain",   color: "ai"  },
   ],
   proyectos: [
     {

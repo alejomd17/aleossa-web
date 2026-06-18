@@ -14,6 +14,7 @@ import {
   Download,
 } from "lucide-react";
 
+import Link from "next/link";
 import { config, badgeColors } from "../lib/config";
 
 export default function HomePage() {
@@ -48,10 +49,10 @@ export default function HomePage() {
         style={{ backgroundColor: "#0a2433" }}
       >
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="/" className="text-lg font-bold tracking-tight">
+          <Link href="/" className="text-lg font-bold tracking-tight">
             <span className="text-white">ALE</span>
             <span style={{ color: "#3CA6C0" }}>OSSA</span>
-          </a>
+          </Link>
 
           {/* Mobile: lang toggle + hamburger */}
           <div className="flex items-center gap-3 md:hidden">
@@ -335,13 +336,13 @@ export default function HomePage() {
             ))}
           </div>
           <div className="mt-6 text-center">
-            <a
+            <Link
               href="/projects"
               className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-lg border hover:opacity-90 transition-opacity"
               style={{ borderColor: "#3CA6C0", color: "#3CA6C0" }}
             >
               {english ? "View all projects →" : "Ver todos los proyectos →"}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

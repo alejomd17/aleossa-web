@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Linkedin,
   Github,
   Menu,
   X,
-  FileText,
   MessageCircle,
   Camera,
   Home,
@@ -13,7 +13,7 @@ import {
   Download,
   ArrowLeft,
 } from "lucide-react";
-import { config, badgeColors } from "../lib/config";
+import { config } from "../lib/config";
 
 export default function ProjectsPage() {
   const [english, setEnglish] = useState(false);
@@ -37,10 +37,10 @@ export default function ProjectsPage() {
       {/* ── NAVBAR ── */}
       <nav className="sticky top-0 z-10 border-b border-[#1d4d63]" style={{ backgroundColor: "#0a2433" }}>
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-          <a href="/" className="text-lg font-bold tracking-tight">
+          <Link href="/" className="text-lg font-bold tracking-tight">
             <span className="text-white">ALE</span>
             <span style={{ color: "#3CA6C0" }}>OSSA</span>
-          </a>
+          </Link>
 
           <div className="flex items-center gap-3 md:hidden">
             <button onClick={() => setEnglish(!english)} className="text-xs font-bold text-white px-2 py-1 rounded border border-[#3CA6C0]">
@@ -52,12 +52,12 @@ export default function ProjectsPage() {
           </div>
 
           <div className="hidden md:flex items-center gap-6">
-            <a href="/" className="text-white hover:opacity-80 text-sm font-medium">
+            <Link href="/" className="text-white hover:opacity-80 text-sm font-medium">
               {english ? "Home" : "Inicio"}
-            </a>
-            <a href="/projects" className="text-sm font-medium" style={{ color: "#3CA6C0" }}>
+            </Link>
+            <Link href="/projects" className="text-sm font-medium" style={{ color: "#3CA6C0" }}>
               {english ? "Projects" : "Proyectos"}
-            </a>
+            </Link>
             <a href="/#contacto" className="text-white hover:opacity-80 text-sm font-medium">
               {english ? "Contact" : "Contacto"}
             </a>
@@ -80,14 +80,14 @@ export default function ProjectsPage() {
       {menuOpen && (
         <div className="md:hidden border-b border-[#1d4d63]" style={{ backgroundColor: "#0a2433" }}>
           <div className="px-4 flex flex-col">
-            <a href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]">
+            <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]">
               <Home size={16} style={{ color: "#3CA6C0" }} />
               {english ? "Home" : "Inicio"}
-            </a>
-            <a href="/projects" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-sm border-b border-[#1d4d63]" style={{ color: "#3CA6C0" }}>
+            </Link>
+            <Link href="/projects" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-sm border-b border-[#1d4d63]" style={{ color: "#3CA6C0" }}>
               <Layers size={16} style={{ color: "#3CA6C0" }} />
               {english ? "Projects" : "Proyectos"}
-            </a>
+            </Link>
             <a href="/#contacto" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 py-3 text-white text-sm border-b border-[#1d4d63]">
               <MessageCircle size={16} style={{ color: "#3CA6C0" }} />
               {english ? "Contact" : "Contacto"}
@@ -111,10 +111,10 @@ export default function ProjectsPage() {
       {/* ── PAGE HEADER ── */}
       <section className="py-8 px-4" style={{ backgroundColor: "#0f2e3d" }}>
         <div className="max-w-5xl mx-auto">
-          <a href="/" className="inline-flex items-center gap-2 text-xs mb-4 hover:opacity-80 transition-opacity" style={{ color: "#3CA6C0" }}>
+          <Link href="/" className="inline-flex items-center gap-2 text-xs mb-4 hover:opacity-80 transition-opacity" style={{ color: "#3CA6C0" }}>
             <ArrowLeft size={14} />
             {english ? "Back to home" : "Volver al inicio"}
-          </a>
+          </Link>
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">
             {english ? "All Projects" : "Todos los proyectos"}
           </h1>

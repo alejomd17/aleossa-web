@@ -62,7 +62,7 @@ export const config = {
     {
       id: "P05",
       destacado: true,
-      titulo: { es: "Agoria — Real Estate Intel", en: "Agoria — Real Estate Intel" },
+      titulo: { es: "Agoria — Inmobiliaria Tech", en: "Agoria — Tech Real Estate" },
       estado: "live",
       desc: {
         es: "Plataforma PropTech con scraping, valoración ML y análisis agéntico del mercado inmobiliario colombiano.",
